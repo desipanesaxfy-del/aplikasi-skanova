@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'home_page.dart';
 import 'presensi_page.dart';
 import 'pembelajaran_page.dart';
+import 'cbt_page.dart';
 import 'akun_page_page.dart';
 
 class MainNavigation extends StatefulWidget {
@@ -14,17 +16,21 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
   int selectedIndex = 0;
 
-  final pages = const [
+  final List<Widget> pages = const [
     HomePage(),
-    PresensiPage(),
     PembelajaranPage(),
+    PresensiPage(),
+    CbtPage(),
     AkunPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[selectedIndex],
+      body: IndexedStack(
+        index: selectedIndex,
+        children: pages,
+      ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedIndex,
         onDestinationSelected: (index) {
@@ -39,15 +45,23 @@ class _MainNavigationState extends State<MainNavigation> {
             label: 'Home',
           ),
           NavigationDestination(
+            icon: Icon(Icons.menu_book_outlined),
+            selectedIcon: Icon(Icons.menu_book),
+            label: 'LMS',
+          ),
+          NavigationDestination(
             icon: Icon(Icons.camera_alt_outlined),
+            selectedIcon: Icon(Icons.camera_alt),
             label: 'Presensi',
           ),
           NavigationDestination(
-            icon: Icon(Icons.menu_book_outlined),
-            label: 'Belajar',
+            icon: Icon(Icons.quiz_outlined),
+            selectedIcon: Icon(Icons.quiz),
+            label: 'CBT',
           ),
           NavigationDestination(
             icon: Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.person),
             label: 'Akun',
           ),
         ],

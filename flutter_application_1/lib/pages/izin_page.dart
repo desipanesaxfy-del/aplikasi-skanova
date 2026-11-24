@@ -33,7 +33,7 @@ class _IzinPageState extends State<IzinPage> {
           ),
           const SizedBox(height: 20),
           DropdownButtonFormField<String>(
-            value: jenisIzin,
+            initialValue: jenisIzin,
             decoration: const InputDecoration(
               labelText: 'Jenis Izin',
               border: OutlineInputBorder(),
